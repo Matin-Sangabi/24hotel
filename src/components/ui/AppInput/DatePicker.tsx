@@ -5,19 +5,13 @@ import { AppInputProps } from "../../../types";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/material_blue.css";
 
-export default function DatePicker({
-  name,
-  label,
-  type = "text",
-  placeholder,
-  ...other
-}: AppInputProps) {
+export default function DatePicker({ name, label, ...other }: AppInputProps) {
   const { control } = useFormContext();
   return (
     <Controller
       name={name}
       control={control}
-      render={({ field, fieldState: { error } }) => (
+      render={({ field }) => (
         <>
           <FormGroup className="mb-4">
             <Label style={{ fontWeight: "900", fontSize: 15 }}>{label}</Label>

@@ -3,11 +3,21 @@ import { FieldValues, UseFormReturn } from "react-hook-form";
 
 export interface FormProviderProps<T extends FieldValues> {
   methods: UseFormReturn<T>;
-  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
+  onSubmit?: (event: FormEvent<HTMLFormElement>) => void;
   children: ReactNode;
 }
+ 
+export interface Option {
+  label: string;
+  value: string;
+}
 
-export type InputType = "text" | "password" | "email" | "number";
+interface OptionGroup {
+  label: string;
+  options: Option[];
+}
+
+export type InputType = "text" | "password" | "email" | "number" | "tel";
 
 type ButtonType = "button" | "submit" | "reset" | undefined;
 
@@ -16,6 +26,7 @@ export interface AppInputProps {
   label: string;
   type?: InputType;
   placeholder?: string;
+  options?: OptionGroup[];
 }
 
 export interface AppButtonProps {

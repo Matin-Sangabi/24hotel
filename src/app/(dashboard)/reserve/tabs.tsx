@@ -2,13 +2,12 @@
 import React from "react";
 import { NavItem, NavLink } from "reactstrap";
 import classnames from "classnames";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 export default function Tabs() {
   const searchParams = useSearchParams();
 
   const activeTab = searchParams.get("step") || 1;
-  const { push } = useRouter();
 
   return (
     <div className="steps clearfix">
@@ -20,9 +19,7 @@ export default function Tabs() {
           >
             <NavLink
               className={classnames({ current: +activeTab === item.id })}
-              onClick={() => {
-                push(`/reserve?step=${item.id}`);
-              }}
+             
             >
               <span className="number">{item.id}.</span> {item.title}
             </NavLink>

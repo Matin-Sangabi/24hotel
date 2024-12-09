@@ -24,10 +24,12 @@ export default function AuthProvider({ children }: ChildrenNodes) {
     refetchOnWindowFocus: false,
   });
 
-
-
   useEffect(() => {
-    if (status === "success" && data?.data === null && !pathname.includes("/auth")) {
+    if (
+      status === "success" &&
+      data?.data === null &&
+      !pathname.includes("/auth")
+    ) {
       push("/auth/login");
     }
   }, [data, pathname, push, status]);
@@ -38,9 +40,8 @@ export default function AuthProvider({ children }: ChildrenNodes) {
 
   const contextValue: AuthContextData = {
     isLogin: !!data,
-    data: data || null,
+    data: data?.data ? data : null,
   };
-
 
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>

@@ -1,16 +1,20 @@
 "use client";
-import Link from "next/link";
 import React from "react";
-import { Card, CardBody, TabContent, TabPane } from "reactstrap";
+import { Card, CardBody, TabContent } from "reactstrap";
 import Tabs from "./tabs";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Step1 from "./step/step1";
+import Step2 from "./step/step2";
+import Step4 from "./step/step4";
+import Step3 from "./step/step3";
 
 export default function FormWizard() {
   const searchParams = useSearchParams();
 
   const activeTab = searchParams.get("step") || 1;
-  const { push } = useRouter();
+  const numberOfGuests = searchParams.get("numberOfGuests") || 1;
+  const array = Array(+numberOfGuests).fill("");
+  console.log(array);
 
   return (
     <Card>
@@ -21,15 +25,10 @@ export default function FormWizard() {
           <div className="content clearfix">
             <TabContent activeTab={+activeTab} className="body">
               <Step1 />
-              <TabPane tabId={2}>
-                <div>2</div>
-              </TabPane>
-              <TabPane tabId={3}>
-                <div>3</div>
-              </TabPane>
-              <TabPane tabId={4}>
-                <div className="row justify-content-center">4</div>
-              </TabPane>
+
+              <Step2 />
+              <Step3 />
+              <Step4 />
             </TabContent>
           </div>
           {/* <div className="actions clearfix">

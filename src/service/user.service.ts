@@ -6,7 +6,11 @@ export interface LoginResponse {
   access_token: string;
 }
 
-export async function verifyToken(): Promise<ResponseData | null> {
+export interface ReturnNull {
+  data: null;
+}
+
+export async function verifyToken(): Promise<ResponseData | ReturnNull> {
   const token = Cookies.get("access_token");
   if (token) {
     const formData = { token };
@@ -14,5 +18,5 @@ export async function verifyToken(): Promise<ResponseData | null> {
     const { data } = await http.post("/auth/verify", formData);
     return data;
   }
-  return null
+  return { data: null };
 }
