@@ -44,6 +44,7 @@ export default function Step4() {
 
   const onSubmit = (data: StepFourForms) => {
     console.log(data);
+    push("/");
   };
 
   return (
