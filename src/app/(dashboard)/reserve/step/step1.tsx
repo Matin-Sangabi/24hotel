@@ -31,7 +31,7 @@ export default function Step1() {
     // resolver: yupResolver(schema),
   });
 
-  const { handleSubmit ,reset } = methods;
+  const { handleSubmit } = methods;
 
   const onSubmit = async (data: StepOneForm) => {
     try {
@@ -45,7 +45,6 @@ export default function Step1() {
       };
       const queryStringResult = queryString.stringify(formData);
       push(`/reserve?${queryStringResult}`);
-      reset()
     } catch (error) {
       console.log(error);
     }
