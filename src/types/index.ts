@@ -49,3 +49,13 @@ export interface AuthContextData {
 export interface ChildrenNodes {
   children: ReactNode;
 }
+
+
+export interface StepOneForm {
+  adult: number;
+  child: number;
+  child_without_service: number;
+  baby: number;
+  fromDate: Date;
+  toDate: Date;
+}

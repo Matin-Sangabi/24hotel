@@ -13,7 +13,7 @@ export default function MainLayout({children} : ChildrenNodes) {
         <Sidebar
          
         />
-        <div className="main-content" style={{margin :"5rem auto" , maxWidth : "1300px" , width :"100%"}}>{children}</div>
+        <div className="main-content">{children}</div>
       
       </div>
      

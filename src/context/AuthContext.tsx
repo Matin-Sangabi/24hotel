@@ -24,10 +24,10 @@ export default function AuthProvider({ children }: ChildrenNodes) {
     refetchOnWindowFocus: false,
   });
 
-  console.log(data)
+
 
   useEffect(() => {
-    if (status === "success" && data === null && !pathname.includes("/auth")) {
+    if (status === "success" && data?.data === null && !pathname.includes("/auth")) {
       push("/auth/login");
     }
   }, [data, pathname, push, status]);

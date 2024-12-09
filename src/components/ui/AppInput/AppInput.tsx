@@ -20,7 +20,12 @@ export default function AppInput({
       render={({ field, fieldState: { error } }) => (
         <>
           <>
-            <Label className="form-label">{label}</Label>
+            <Label
+              className="form-label"
+              style={{ fontWeight: "900", fontSize: 15 }}
+            >
+              {label}
+            </Label>
             <Input
               className="form-control"
               placeholder={placeholder}
