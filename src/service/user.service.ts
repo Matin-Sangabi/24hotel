@@ -11,7 +11,7 @@ export async function verifyToken(): Promise<ResponseData | null> {
   if (token) {
     const formData = { token };
 
-    const { data } = await http.post("/auth/login", formData);
+    const { data } = await http.post("/auth/verify", formData);
     return data;
   }
   return null

@@ -24,6 +24,8 @@ export default function AuthProvider({ children }: ChildrenNodes) {
     refetchOnWindowFocus: false,
   });
 
+  console.log(data)
+
   useEffect(() => {
     if (status === "success" && data === null && !pathname.includes("/auth")) {
       push("/auth/login");
@@ -34,10 +36,11 @@ export default function AuthProvider({ children }: ChildrenNodes) {
     return <div>Loading...</div>;
   }
 
-  const contextValue = {
+  const contextValue: AuthContextData = {
     isLogin: !!data,
-    data,
+    data: data || null,
   };
+
 
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>

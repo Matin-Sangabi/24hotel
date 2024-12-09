@@ -1,20 +1,51 @@
+import { activePath } from "@/utils/format";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import SimpleBar from "simplebar-react";
 
 export default function SidebarContent() {
+
+  const pathname = usePathname()
+  
+
   return (
     <React.Fragment>
       <SimpleBar className="h-100">
-        <div id="sidebar-menu" style={{color : "white"}}>
+        <div id="sidebar-menu" style={{ color: "white" }}>
           <ul className="metismenu list-unstyled text-white" id="side-menu">
             <li className="menu-title">{"منو"} </li>
-            <li>
-              <Link href="/#" className="has-arrow">
-                <i className="bx bx-home-circle"></i>
-                <span className="text-white">{"داشبورد"}</span>
-              </Link>
-              {/* <ul className="sub-menu" aria-expanded="false">
+            {sidebarData.map((item, index) => (
+              <li key={index}>
+                <Link
+                  href={`${item.path}`}
+                  className={`${item?.isArrow ? "has-arrow" : ""} ${
+                    activePath(item.path, pathname) ? "mm-active" : " "
+                  }`}
+                >
+                  <i className={item.icon}></i>
+                  <span className="text-white">{item.title}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </SimpleBar>
+    </React.Fragment>
+  );
+}
+
+const sidebarData = [
+  { title: "داشبورد", path: "/", icon: "bx bx-home-circle", isArrow: false },
+  {
+    title: "رزرواسیون",
+    path: "/reserve",
+    icon: "bx bx-calendar",
+    isArrow: false,
+  },
+];
+{
+  /* <ul className="sub-menu" aria-expanded="false">
                 <li>
                   <Link href="/dashboard">{props.t("پیش فرض")}</Link>
                 </li>
@@ -30,18 +61,5 @@ export default function SidebarContent() {
                 <li>
                   <Link href="/dashboard-job">{props.t("شغل")}</Link>
                 </li>
-              </ul> */}
-            </li>
-            <li>
-              <Link href="/reserve" className="has-arrow">
-                <i className="bx bx-home-circle"></i>
-                <span className="text-white">{"رزرواسیون"}</span>
-              </Link>
-          
-            </li>
-          </ul>
-        </div>
-      </SimpleBar>
-    </React.Fragment>
-  );
+              </ul> */
 }
